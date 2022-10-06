@@ -22,14 +22,6 @@ height:500px;
  left: 10px;
 `;
 
-const Cardimg = styled.div`
-  
-position:absolute;
-right: 100px;
-top:800px;
-width:1100px;
-height:587px;
-`;
 
 const Footer = styled.div`
   
@@ -40,16 +32,6 @@ position:absolute;
   height:587px;
 top:1500px;
 overflow-x: hidden;
-`;
-
-const Wrapper = styled.div`
-  
-position: absolute;
-align-items: center;
-justify-content: center;
-top:200px;
-right:-0px;
-display: flex;
 `;
 
 const Iconcards = styled.div`

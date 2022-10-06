@@ -11,7 +11,7 @@ import Info from '../views/informacion/Info';
 import Login from '../views/login/Login'; 
 import Admin from '../views/panel/Admi';
 import Catalogo from '../views/catalogo/catalogo'
-
+import Registro from '../views/registro/Register'
 export default function Rutas(){
   return (
   
@@ -23,6 +23,7 @@ export default function Rutas(){
           <Route exact path="/Iniciosesion" element={<Login/>}/> 
           <Route exact path="/Catalogo" element={<Catalogo/>}/>
           <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/RegistroProductores" element={<Registro/>}/>
         </Routes>
      
     </Router>

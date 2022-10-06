@@ -16,6 +16,7 @@ export default function Nav() {
             <Link type="button" className="btn btn-outline-primary me-md-2" to="/Informacion">Informacion</Link>
             <Link type="button" className="btn btn-outline-primary me-md-2" to="/Iniciosesion">Inicio sesion</Link>
             <Link type="button" className="btn btn-outline-primary me-md-2" to="/Catalogo">Ver catalogo</Link>
+            <Link type="button" className="btn btn-outline-primary me-md-2" to="/Panel">Panel</Link>
           </div>
         </div>
       </nav>

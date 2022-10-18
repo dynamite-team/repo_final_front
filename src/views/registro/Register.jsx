@@ -9,7 +9,8 @@ import {
 const ContainerPrincipal = styled.div`
   height: 100%;
   width: 100%;
-  background: url('https://i.pinimg.com/564x/ca/30/56/ca305656cc3f354de4277e9bee32b613.jpg')
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(37,90,233,0.8547794117647058) 0%, rgba(0,212,255,1) 100%);
 `;
 
 

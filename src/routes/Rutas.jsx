@@ -12,6 +12,8 @@ import Login from '../views/login/Login';
 import Admin from '../views/panel/Admi';
 import Catalogo from '../views/catalogo/catalogo'
 import Registro from '../views/registro/Register'
+import HomeProductor from '../views/vistaProductor/HomeProductor';
+
 export default function Rutas(){
   return (
   
@@ -24,6 +26,8 @@ export default function Rutas(){
           <Route exact path="/Catalogo" element={<Catalogo/>}/>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/RegistroProductores" element={<Registro/>}/>
+          <Route exact path="/HomeProductor" element={<HomeProductor/>}/>
+
         </Routes>
      
     </Router>

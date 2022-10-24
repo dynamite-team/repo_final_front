@@ -111,7 +111,6 @@ export default function Info() {
        
 
         <Wrapper>
-
           <Left>
          
           <ReactPlayer

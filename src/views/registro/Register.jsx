@@ -50,7 +50,7 @@ const Register = () => {
             
           </FormControl>
 
-          <Button style={{ 'marginTop': '5%', 'display': ' block', 'margin': '0 auto' }} color='success' variant="contained">Contained</Button>
+          <Button style={{ 'marginTop': '5%', 'display': ' block', 'margin': '0 auto' }} color='success' variant="contained">Registrar</Button>
         </Container>
       </ContainerPrincipal>
 

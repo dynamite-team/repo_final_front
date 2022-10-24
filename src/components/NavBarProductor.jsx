@@ -1,13 +1,16 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+/* import { useNavigate } from 'react-router-dom'
+
+const navigate = useNavigate(); */
+import { Link } from 'react-router-dom';
 
 
-function NavBarProductor() {
+function NavBarProductor(props) {
   return (
-    <Navbar bg="primary" variant="dark">
+    <Navbar bg={props.color} variant="dark">
     <Container>
-      <Navbar.Brand href="/">Inicio</Navbar.Brand>
+    <Link to={-1} color="red">  </Link>
     </Container>
   </Navbar>
   );

@@ -35,7 +35,8 @@ const HomeProductor = () => {
 
     return (
         <>
-            <NavBarProductor />
+            <NavBarProductor 
+            color="primary"/>
             <Wrapper>
                 <Left>
                     <ProSidebarProvider>

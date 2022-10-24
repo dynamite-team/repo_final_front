@@ -4,13 +4,14 @@ import {
   FormControl, InputLabel, FormHelperText, Input,
   Container, TextField, Button
 } from '@mui/material';
-
+import NavBarProductor from '../../components/NavBarProductor';
 
 const ContainerPrincipal = styled.div`
   height: 100%;
   width: 100%;
-  background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(37,90,233,0.8547794117647058) 0%, rgba(0,212,255,1) 100%);
+  background: #73a9c2
+ 
+
 `;
 
 
@@ -30,8 +31,11 @@ text-align: left;
 const Register = () => {
   return (
     <>
+  
       <ContainerPrincipal>
-        <Container maxWidth="md" style={{ 'backgroundColor': '#FFFF', 'borderRadius': '5%'}}>
+      <NavBarProductor 
+    color="primary"/>
+        <Container maxWidth="md" style={{ 'backgroundColor': '#FFFF', 'borderRadius': '5%', 'marginTop': '2%'}}>
 
           <Title>Registro de productores</Title>
           <FormControl fullWidth>

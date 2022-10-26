@@ -54,6 +54,10 @@ const Button = styled.div`
     border-radius : 10px;
     height: 18vh;
   }
+  :hover{
+    border: 1px solid #000
+  }
+  
 `;
 const Item = styled.div`
   display: flex;
@@ -88,6 +92,7 @@ font-family: Monserrat;
 font-weight: bold;
 ;
 `
+
 
 const Catalogo = () => {
   //estado de la lista de todos los productos

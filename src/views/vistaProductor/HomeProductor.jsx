@@ -1,26 +1,29 @@
 import { ProSidebarProvider, Menu, MenuItem } from 'react-pro-sidebar'
 import styled from 'styled-components';
-import NavBarProductor from '../../components/NavBarProductor';
-import { FiSettings, FiLogOut } from 'react-icons/fi'
-import { AiOutlineInfoCircle } from 'react-icons/ai'
+import NavBarBack from '../../components/NavBarBack';
 
-const Button = styled.div`
-    padding: 4%;
-    margin: auto;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-`;
+/* ----Iconos----- */
+import { FiLogOut } from 'react-icons/fi'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
+import { BsCashCoin, BsBagCheck, BsGraphUp } from 'react-icons/bs'
+import { TbPlant } from 'react-icons/tb'
 
 const Wrapper = styled.div`
 display: flex;
 `
 const Left = styled.div`
-width: 30%;
+width: 25%;
 height: 100vh;
 background-color: #E2F0FB 
 `;
 const Right = styled.div`
 height: fit-content;
 width: 70%
+`;
+const ContainerOptions = styled.div`
+background-color: white;
+padding: 10px;
+text-align: left;
 `;
 
 const persona = {
@@ -35,12 +38,13 @@ const HomeProductor = () => {
 
     return (
         <>
-            <NavBarProductor 
-            color="primary"/>
+            <NavBarBack
+                color="navbar navbar-expand-lg bg-primary"
+                colorIcon="white" />
             <Wrapper>
                 <Left>
                     <ProSidebarProvider>
-                        <h5 style={{ marginLeft: '30px', fontFamily: 'sans-serif', marginTop:'5%' }}>SOBERANIA ALIMENTARIA FORMOSEÑA</h5>
+                        <h5 style={{ marginLeft: '30px', fontFamily: 'sans-serif', marginTop: '5%' }}>SOBERANIA ALIMENTARIA FORMOSEÑA</h5>
                         <Menu style={{ width: '50vh' }}>
                             <div style={{ marginLeft: '30px', color: 'grey' }}>
                                 <div>{persona.nombre}</div>
@@ -49,7 +53,6 @@ const HomeProductor = () => {
                                 <div>{persona.email}</div>
                                 <div>{persona.domicilio}</div>
                             </div>
-                            <MenuItem icon={<FiSettings />}>Modificar Datos</MenuItem>
                             <hr />
                             <MenuItem icon={<AiOutlineInfoCircle />} href="/Informacion">Acerca del programa</MenuItem>
                             <MenuItem icon={<FiLogOut />}>CERRAR SESION</MenuItem>
@@ -57,10 +60,16 @@ const HomeProductor = () => {
                     </ProSidebarProvider>
                 </Left>
                 <Right>
-                        <Button type="button">Mis estadísticas</Button>
-                        <Button type="button">Mis ingresos mensuales</Button>
-                        <Button type="button">Mis productos</Button>
-                        <Button type="button">Informacion de cuidado</Button>
+                    <ProSidebarProvider>
+                        <ContainerOptions>
+                            <Menu>
+                                <MenuItem icon={<BsGraphUp/>}>Mis estadísticas</MenuItem>
+                                <MenuItem icon={<BsCashCoin/>}>Mis ingresos mensuales</MenuItem>
+                                <MenuItem icon={<BsBagCheck/>}>Mis productos</MenuItem>
+                                <MenuItem icon={<TbPlant/>}>Informacion de cuidado</MenuItem>
+                            </Menu>
+                        </ContainerOptions>
+                    </ProSidebarProvider>
                 </Right>
             </Wrapper>
         </>

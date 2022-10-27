@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import NavBarBack from '../../components/NavBarBack'
+import NavBarBack from '../../components/navbars/NavBarBack'
 export default function Admi() {
 
   return (

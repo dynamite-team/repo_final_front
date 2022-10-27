@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GiFruitBowl, GiMeat, GiMilkCarton, GiPaperBagOpen, GiWrappedSweet } from "react-icons/gi";
 import { useEffect } from 'react';
-import NavBarBack from '../../components/NavBarBack';
+import NavBarBack from '../../components/navbars/NavBarBack';
 
 
 

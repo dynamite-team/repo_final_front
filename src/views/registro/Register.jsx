@@ -4,7 +4,7 @@ import {
   FormControl, InputLabel, FormHelperText, Input,
   Container, TextField, Button
 } from '@mui/material';
-import  NavBarBack from '../../components/NavBarBack';
+import  NavBarBack from '../../components/navbars/NavBarBack';
 
 
 
@@ -13,8 +13,6 @@ const ContainerPrincipal = styled.div`
   width: 100%;
   background: #73a9c2
 `;
-
-
 const Title = styled.div`
 font-size: 40px;
 font-family: Monserrat;

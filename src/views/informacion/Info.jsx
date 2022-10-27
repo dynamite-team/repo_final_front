@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ReactPlayer from 'react-player';
-import NavBarBack from '../../components/NavBarBack';
+import NavBarBack from '../../components/navbars/NavBarBack';
 
 
 

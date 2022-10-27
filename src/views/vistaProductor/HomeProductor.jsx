@@ -1,6 +1,6 @@
 import { ProSidebarProvider, Menu, MenuItem } from 'react-pro-sidebar'
 import styled from 'styled-components';
-import NavBarBack from '../../components/NavBarBack';
+import NavBarBack from '../../components/navbars/NavBarBack';
 
 /* ----Iconos----- */
 import { FiLogOut } from 'react-icons/fi'
@@ -63,10 +63,10 @@ const HomeProductor = () => {
                     <ProSidebarProvider>
                         <ContainerOptions>
                             <Menu>
-                                <MenuItem icon={<BsGraphUp/>}>Mis estadísticas</MenuItem>
-                                <MenuItem icon={<BsCashCoin/>}>Mis ingresos mensuales</MenuItem>
-                                <MenuItem icon={<BsBagCheck/>}>Mis productos</MenuItem>
-                                <MenuItem icon={<TbPlant/>}>Informacion de cuidado</MenuItem>
+                                <MenuItem icon={<BsGraphUp/>} href="/MisEstadisticas">Mis estadísticas</MenuItem>
+                                <MenuItem icon={<BsCashCoin/>} href="/IngresosMensuales">Mis ingresos mensuales</MenuItem>
+                                <MenuItem icon={<BsBagCheck/>} href="/MisProductos">Mis productos</MenuItem>
+                                <MenuItem icon={<TbPlant/>} href="/InformacionCuidados">Informacion de cuidado</MenuItem>
                             </Menu>
                         </ContainerOptions>
                     </ProSidebarProvider>

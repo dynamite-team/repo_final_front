@@ -15,7 +15,7 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: center;
   color: blue;
-  font-family: Monserrat;
+  font-family: Cambria;
   padding: 20px;
   font-size: 40px;
   @media screen and (max-width: 900px){
@@ -79,6 +79,7 @@ const GridProductos = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: auto;
   grid-gap: 20px;
+  margin-top: 2%;
 
   @media screen and (max-width: 900px){
     grid-template-columns: repeat(5, 1fr);
@@ -106,7 +107,7 @@ const Catalogo = () => {
 
 
   const showData = () => {
-    fetch("http://localhost:3000/carrito")
+    fetch("http://localhost:4000/carrito")
       .then(response => response.json())
       .then(data => {
         setProductos(data);

@@ -58,11 +58,11 @@ const items = [
   {
     mes: "Agosto",
     monto: "$400"
-  }, 
+  },
   {
     mes: "Septiembre",
     monto: "$400"
-  }, 
+  },
   {
     mes: "Octubre",
     monto: "$400"
@@ -76,6 +76,7 @@ const items = [
     monto: "$400"
   }
 ]
+
 function Items({ currentItems }) {
   return (
     <>

@@ -6,7 +6,7 @@ import NavBarBack from '../../components/navbars/NavBarBack';
 import { FiLogOut } from 'react-icons/fi'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { BsCashCoin, BsBagCheck, BsGraphUp } from 'react-icons/bs'
-import { TbPlant } from 'react-icons/tb'
+
 
 const Wrapper = styled.div`
 display: flex;
@@ -66,7 +66,6 @@ const HomeProductor = () => {
                                 <MenuItem icon={<BsGraphUp/>} href="/MisEstadisticas">Mis estadísticas</MenuItem>
                                 <MenuItem icon={<BsCashCoin/>} href="/IngresosMensuales">Mis ingresos mensuales</MenuItem>
                                 <MenuItem icon={<BsBagCheck/>} href="/MisProductos">Mis productos</MenuItem>
-                                <MenuItem icon={<TbPlant/>} href="/InformacionCuidados">Informacion de cuidado</MenuItem>
                             </Menu>
                         </ContainerOptions>
                     </ProSidebarProvider>

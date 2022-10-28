@@ -200,7 +200,6 @@ const Catalogo = () => {
                 ))
           }
         </GridProductos>
-
       </Container>
     </>
 

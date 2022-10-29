@@ -1,18 +1,23 @@
 import  React, { useEffect, useState } from "react";
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
-import Collapse from '@mui/material/Collapse'
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import "./login.css";
+
+import { useForm } from '../../components/hooks/useForm';
+
+//REDUX
+import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux'
+import { fetchUsuario } from "../../redux/actions/login";
 
 import shortid from "shortid";
 
@@ -31,146 +36,125 @@ function Copyright(props) {
 {/* axxx */}
 const theme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+//LOGIN
+const Login = ({fetchUsuario }) => {
+
+
+
+//REDUX
+
+
 
 
   /* CARGAR DATOS */
 
 
-  const [usuario, setUsuario] = useState('')
-  const [contrasenia, setContrasenia] = useState('')
+
+  //const [email, setUsuario] = useState('')
   const[errorMessage, setErrorMessage] = useState (null)
- 
-  const iniciarSesion ={
-    id: shortid.generate(),
-       users: usuario,
-       password:contrasenia
-   }
 
-   const usersAdmin ={
-    id: shortid.generate(),
-       userAdmin: "ari",
-       passwordAdmin:"ari123",
-    
-   }
+  const [ formLoginValues, handleLoginInputChange ] = useForm({
+    lEmail: '',
+    lPassword:'',
+});
   
-   
-   const guardarTarea = (e) => {
-    e.preventDefault()
-		  setUsuario([...usuario,  iniciarSesion])
-    setContrasenia([...contrasenia,  iniciarSesion])
+const { lEmail,lPassword } = formLoginValues;
+
+const handleLogin = ( e ) => {
+  e.preventDefault();
+  fetchUsuario(lEmail,lPassword);
+
+  console.log(lEmail)
+  console.log(lPassword)
+}
   
-    console.log(iniciarSesion)
-    console.log(usersAdmin.userAdmin)
-    console.log(usuario)
-    usersAdmin.userAdmin===usuario && usersAdmin.passwordAdmin===contrasenia 
-    ?
-    window.location.href= `/Panel`
-    :
-    setErrorMessage('Usuario o Contraseña incorrecta')
-    setTimeout(() => {
-        setErrorMessage(null)
-    }, 3000)
-    console.log("Error",e)
-
-	
-  
-
-   } 
-
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
+
+<div class="container-fluid2 ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-2">BIENVENIDO</h3>
+            <hr /><br />
+
+              <form onSubmit={ handleLogin } >
+                <div class="form-floating mb-3">
+
+                <input 
+                                type="text"
+                                className="form-control"
+                                placeholder="Correo"
+                                name="lEmail"
+                                value={ lEmail }
+                                onChange={ handleLoginInputChange }
+                            />
 
 
-        {/*  Imagen del LOGIN  */}
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://encolombia.com/wp-content/uploads/2021/03/Productos-agricolas.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+                     
+                            <input
+                                type="password"
+                                className="form-control"
+                                placeholder="Contraseña"
+                                name="lPassword"
+                                value={ lPassword }
+                                onChange={ handleLoginInputChange }
+                            />
+                        
+                 
+                </div>
+                
 
-        <Grid item xs={12} sm={8} md={5}  elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'blue'  }}/>
-          
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={(event) => setUsuario(event.target.value)}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(event) => setContrasenia(event.target.value)}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck"/>
+                  <label class="form-check-label" for="rememberPasswordCheck" >
+                    Remember password
+                  </label>
+                </div>
+                <br />
+                <div class="d-grid">
+
+                <Button
                 type="submit"
                 fullWidth
                 variant="contained"
+                
                 sx={{ mt: 3, mb: 2 }}
-                onClick={guardarTarea}
+               
               >
                 Sign In
               </Button>
-              <br/>
-              <p style={{color:"red"}}>{errorMessage}</p>
-              
-					
+                 
+                </div>
 
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+                <p style={{color:"red"}}>{errorMessage}</p>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+   
   );
 }
+
+
+//SACAR DEL ESTADO 
+const mapStateToProps = state => ({
+  
+  data: state.buscadorUsuario.data
+})
+
+//{login} LO PASAMOS ARRIBA 
+//connect ES EL QUE SE ENCARGA DE CONECTAR LAS ACCIONES CON EL COMPONENTE 
+export default connect(mapStateToProps, { fetchUsuario })(Login)

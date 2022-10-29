@@ -9,7 +9,7 @@ import {
 const ContainerPrincipal = styled.div`
   height: 100%;
   width: 100%;
-  background: url('https://i.pinimg.com/564x/ca/30/56/ca305656cc3f354de4277e9bee32b613.jpg')
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 `;
 
 
@@ -30,10 +30,12 @@ const Register = () => {
   return (
     <>
       <ContainerPrincipal>
-        <Container maxWidth="md" style={{ 'backgroundColor': '#FFFF', 'borderRadius': '5%'}}>
+        <Container maxWidth="md" style={{ 'backgroundColor': '#FFFF', 'borderRadius': '5%', 'padding': '3%'}}>
 
           <Title>Registro de productores</Title>
+
           <FormControl fullWidth>
+            <Label>Datos personales</Label>
             <TextField  margin='dense' id="standard-basic" label="Nombre y Apellido" variant="outlined" />
             <TextField margin='dense' id="standard-basic" label="DNI" variant="outlined" />
             <TextField margin='dense' id="standard-basic" label="Numero de telefono" variant="outlined" />
@@ -49,7 +51,7 @@ const Register = () => {
             
           </FormControl>
 
-          <Button style={{ 'marginTop': '5%', 'display': ' block', 'margin': '0 auto' }} color='success' variant="contained">Contained</Button>
+          <Button style={{ 'marginTop': '5%', 'display': ' block', 'margin': '0 auto','marginBottom': '1%' }} color='success' variant="contained">Registrar</Button>
         </Container>
       </ContainerPrincipal>
 

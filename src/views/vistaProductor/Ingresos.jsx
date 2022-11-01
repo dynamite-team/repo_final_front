@@ -28,6 +28,7 @@ const Button = styled.button`
 const Footer = styled.div`
    text-align: center;
    align-self: flex-end;
+   margin: 1% 10% 1% 10%
 `;
 
 

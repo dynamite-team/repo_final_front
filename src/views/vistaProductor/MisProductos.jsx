@@ -28,11 +28,13 @@ const GridProductos = styled.div`
   }
 `;
 const Button = styled.button`
-    border-radius: 5px
+    border-radius: 5px;
+
 `;
 const Footer = styled.div`
     text-align: center;
     align-self: flex-end;
+    margin: 1% 10% 1% 10%
 `;
 
 
@@ -141,7 +143,7 @@ const PaginatedItems = ({ itemsPerPage }) => {
             </GridProductos>
 
             <Footer>
-                <ReactPaginate
+                <ReactPaginate 
                     previousLabel={<Button>Anterior</Button>}
                     nextLabel={<Button>Siguiente</Button>}
                     pageCount={pageCount}

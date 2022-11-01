@@ -1,6 +1,8 @@
 import BarChart from "../../components/graficos/BarGrap";
 import NavBarBack from "../../components/navbars/NavBarBack";
 import styled from 'styled-components';
+import { useState, useEffect } from "react";
+
 
 const ContainerGrafico = styled.div`
     align-items: stretch;
@@ -15,7 +17,38 @@ const Title = styled.div`
     margin-top: 2%
 `;
 
+
 const EstadisticasView = () => {
+
+    useEffect(() => {
+        getData();
+    }, [])
+
+    const [values, setValues] = useState([])
+    const [labels, setLabels] = useState([])
+
+    const getData = async () => {
+
+        const response = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
+        const data = await response.json();
+        length = data.data.length;
+
+        let labelss = [];
+        let valuess = [];
+        let i
+        for (i = 0; i < length; i++) {
+            labelss.push(data.data[i].Year);
+            valuess.push(data.data[i].Population);
+        }
+        setLabels(labelss);
+        setValues(valuess)
+
+console.log("l",labels)
+console.log("v",values)
+       
+    }
+
+ 
     return (
         <>
             <NavBarBack
@@ -23,7 +56,8 @@ const EstadisticasView = () => {
                 colorIcon="white" />
             <Title>Estadísticas de sus ventas</Title>
             <ContainerGrafico>
-                <BarChart />
+                <BarChart datosValues={values}
+                datosLabels={labels} />
             </ContainerGrafico>
 
         </>

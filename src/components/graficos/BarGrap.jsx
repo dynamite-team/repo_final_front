@@ -42,7 +42,8 @@ const options = {
   },
 };
 
-const BarChart = () => {
+const BarChart = ({datosValues, datosLabels}) => {
+
   const data = useMemo(function () {
     return {
       datasets: [
@@ -50,7 +51,6 @@ const BarChart = () => {
           label: "Mis ventas",
           tension: 0.3,
           data: scores,
-          borderColor: "rgb(75, 192, 192)",
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)',

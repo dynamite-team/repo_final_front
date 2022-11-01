@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GiFruitBowl, GiMeat, GiMilkCarton, GiPaperBagOpen, GiWrappedSweet } from "react-icons/gi";
 import { useEffect } from 'react';
 import NavBarBack from '../../components/navbars/NavBarBack';
-
+import Carrusel from '../../components/carrusel/carruselProductos';
 
 
 const Container = styled.div`
@@ -107,10 +107,11 @@ const Catalogo = () => {
 
 
   const showData = () => {
-    fetch("http://localhost:4000/carrito")
+    fetch("https://node-saf-api.onrender.com/api/v1/productos")
       .then(response => response.json())
       .then(data => {
-        setProductos(data);
+        setProductos(data.productos);
+        console.log("productos", productos)
       });
   }
 
@@ -126,7 +127,7 @@ const Catalogo = () => {
   //cada vez que se realiza una modificacion de eleccion de categoria
   //se filtran los productos
   useEffect(() => {
-    setFiltrado(productos.filter((element) => element.categoria === categoria))
+    setFiltrado(productos.filter((element) => element.categoria.nombre === categoria))
   }, [categoria])
 
   //Se filtran los productos cada vez que se modifica el estado del buscador
@@ -149,32 +150,33 @@ const Catalogo = () => {
       <Container>
         <Title>Encuentra los productos que buscas</Title>
         <Container>
-          <Grid>
-            <Button type="button" onClick={() => setCategoria("Lacteos")}>
+     {/*      <Grid>
+            <Button type="button" onClick={() => setCategoria("LACTEOS")}>
               <GiMilkCarton size={50} color={"white"} />
               <Span>Lacteos</Span>
             </Button>
 
-            <Button type="button" onClick={() => setCategoria("Carnes")}>
+            <Button type="button" onClick={() => setCategoria("CARNES")}>
               <GiMeat size={50} color={"white"} />
               <Span>Carnes</Span>
             </Button>
 
-            <Button type="button" onClick={() => setCategoria("Frutas/Verduras")}>
+            <Button type="button" onClick={() => setCategoria("FRUTAS Y VERDURAS")}>
               <GiFruitBowl size={50} color={"white"} />
               <Span>Frutas/Verduras</Span>
             </Button>
 
-            <Button type="button" onClick={() => setCategoria("Bolsones")}>
+            <Button type="button" onClick={() => setCategoria("BOLSONES")}>
               <GiPaperBagOpen size={50} color={"white"} />
               <Span>Bolsones</Span>
             </Button>
 
-            <Button type="button" onClick={() => setCategoria("Dulces artesanales")}>
+            <Button type="button" onClick={() => setCategoria("DULCES ARTESANALES")}>
               <GiWrappedSweet size={50} color={"white"} />
               <Span>Dulces artesanales</Span>
             </Button>
-          </Grid>
+          </Grid> */}
+          <Carrusel />
         </Container>
 
         <Input onChange={searcher} placeholder='Buscar Productos'></Input>
@@ -187,16 +189,16 @@ const Catalogo = () => {
             categoria !== ""
               ? filtrado
                 .map((producto) => (
-                  <tr key={producto.id}>
-                    <Item type="button">{producto.producto}</Item>
+                  <tr key={producto._id}>
+                    <Item type="button">{producto.nombre}</Item>
                   </tr>
                 ))
 
               //filtra por input
               : filtrado
                 .map((producto) => (
-                  <tr key={producto.id}>
-                    <Item type="button">{producto.producto}</Item>
+                  <tr key={producto._id}>
+                    <Item type="button">{producto.nombre}</Item>
                   </tr>
                 ))
           }

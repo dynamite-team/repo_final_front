@@ -44,7 +44,7 @@ const HomeProductor = () => {
             <Wrapper>
                 <Left>
                     <ProSidebarProvider>
-                        <h5 style={{ marginLeft: '30px', fontFamily: 'sans-serif', marginTop: '5%' }}>SOBERANIA ALIMENTARIA FORMOSEÑA</h5>
+                        <h5 style={{ marginLeft: '30px', fontFamily: 'Cambria', marginTop: '5%' }}>SOBERANIA ALIMENTARIA FORMOSEÑA</h5>
                         <Menu style={{ width: '50vh' }}>
                             <div style={{ marginLeft: '30px', color: 'grey' }}>
                                 <div>{persona.nombre}</div>

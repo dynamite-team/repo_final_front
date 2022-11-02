@@ -2,7 +2,7 @@
 .pagination {
     display: flex;
     justify-content: space-between;
-    list-style: none;
+    height: 4rem;
     cursor: pointer;
     margin-top: 2%;
   }

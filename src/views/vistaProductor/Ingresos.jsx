@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import NavBarBack from '../../components/navbars/NavBarBack';
 
 import '../../styles/pagination.styles.css'
+
 const ContainerPrincipal = styled.div`
     height: 100vh;
     width: 100vw;
@@ -22,7 +23,12 @@ const Wrapper = styled.div`
     margin:  2%  5%  5%  5%;
 `
 const Button = styled.button`
-    border-radius: 5px
+   border-radius: 5px
+`;
+const Footer = styled.div`
+   text-align: center;
+   align-self: flex-end;
+   margin: 1% 10% 1% 10%
 `;
 
 
@@ -117,18 +123,23 @@ function PaginatedItems({ itemsPerPage }) {
 
   return (
     <>
-      <Items currentItems={currentItems} />
-      <ReactPaginate
-        previousLabel={<Button>Anterior</Button>}
-        nextLabel={<Button>Siguiente</Button>}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        previousLinkClassName={"pagination__link"}
-        nextLinkClassName={"pagination__link"}
-        disabledClassName={"pagination__link--disabled"}
-        activeClassName={"pagination__link--active"}
-      />
+      <Wrapper>
+        <Items currentItems={currentItems} />
+      </Wrapper>
+
+      <Footer>
+        <ReactPaginate
+          previousLabel={<Button>Anterior</Button>}
+          nextLabel={<Button>Siguiente</Button>}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          previousLinkClassName={"pagination__link"}
+          nextLinkClassName={"pagination__link"}
+          disabledClassName={"pagination__link--disabled"}
+          activeClassName={"pagination__link--active"}
+        />
+      </Footer>
     </>
   );
 }
@@ -140,9 +151,7 @@ const IngresosMensualesView = () => {
         colorIcon="white" />
       <ContainerPrincipal>
         <Title>Mis Ingresos</Title>
-        <Wrapper>
-          <PaginatedItems itemsPerPage={5} />
-        </Wrapper>
+        <PaginatedItems itemsPerPage={5} />
       </ContainerPrincipal>
     </>
   )

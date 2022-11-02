@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GiFruitBowl, GiMeat, GiMilkCarton, GiPaperBagOpen, GiWrappedSweet } from "react-icons/gi";
 import { useEffect } from 'react';
-
+import NavBarBack from '../../components/navbars/NavBarBack';
 
 
 
@@ -12,20 +12,17 @@ const Container = styled.div`
     text-align: center;
     margin: 35px 35px 35px 35px;
 `;
-
 const Title = styled.h1`
   text-align: center;
   color: blue;
-  font-family: Monserrat;
+  font-family: Cambria;
   padding: 20px;
   font-size: 40px;
-
   @media screen and (max-width: 900px){
     font-size: 30px;
     text-align: center;
   }
 `;
-
 const Input = styled.input`
   font-size: 18px;
   padding: 10px;
@@ -37,12 +34,10 @@ const Input = styled.input`
     color: #858585;
   }
   width: 100vh;
-
   @media screen and (max-width: 900px){
     width:80vh
   }
 `;
-
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -59,8 +54,11 @@ const Button = styled.div`
     border-radius : 10px;
     height: 18vh;
   }
+  :hover{
+    border: 1px solid #000
+  }
+  
 `;
-
 const Item = styled.div`
   display: flex;
   justify-content: center;
@@ -69,30 +67,25 @@ const Item = styled.div`
   border-radius : 20px;
   height: 100px;
 `;
-
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 50px 50px;
   grid-gap: 15px;
   position:relative;
-
 `;
-
 const GridProductos = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: auto;
   grid-gap: 20px;
+  margin-top: 2%;
 
   @media screen and (max-width: 900px){
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
   }
- 
 `;
-
-
 const Span = styled.div`
 position:absolute;
 bottom:0;
@@ -100,7 +93,6 @@ font-family: Monserrat;
 font-weight: bold;
 ;
 `
-
 
 
 const Catalogo = () => {
@@ -115,7 +107,7 @@ const Catalogo = () => {
 
 
   const showData = () => {
-    fetch("http://localhost:3000/carrito")
+    fetch("http://localhost:4000/carrito")
       .then(response => response.json())
       .then(data => {
         setProductos(data);
@@ -126,7 +118,6 @@ const Catalogo = () => {
   const searcher = (e) => {
     setSearch(e.target.value)
   }
-
 
   useEffect(() => {
     showData();
@@ -151,38 +142,42 @@ const Catalogo = () => {
   }, [search])
 
   return (
-    <Container>
-      <Title>Encuentra los productos que buscas</Title>
+    <>
+    <NavBarBack 
+        color="navbar navbar-expand-lg bg-primary"
+        colorIcon= "white"/> 
       <Container>
-        <Grid>
-          <Button type="button" onClick={() => setCategoria("Lacteos")}>
-            <GiMilkCarton size={50} color={"white"} />
-            <Span>Lacteos</Span>
-          </Button>
+        <Title>Encuentra los productos que buscas</Title>
+        <Container>
+          <Grid>
+            <Button type="button" onClick={() => setCategoria("Lacteos")}>
+              <GiMilkCarton size={50} color={"white"} />
+              <Span>Lacteos</Span>
+            </Button>
 
-          <Button type="button" onClick={() => setCategoria("Carnes")}>
-            <GiMeat size={50} color={"white"} />
-            <Span>Carnes</Span>
-          </Button>
+            <Button type="button" onClick={() => setCategoria("Carnes")}>
+              <GiMeat size={50} color={"white"} />
+              <Span>Carnes</Span>
+            </Button>
 
-          <Button type="button" onClick={() => setCategoria("Frutas/Verduras")}>
-            <GiFruitBowl size={50} color={"white"} />
-            <Span>Frutas/Verduras</Span>
-          </Button>
+            <Button type="button" onClick={() => setCategoria("Frutas/Verduras")}>
+              <GiFruitBowl size={50} color={"white"} />
+              <Span>Frutas/Verduras</Span>
+            </Button>
 
-          <Button type="button" onClick={() => setCategoria("Bolsones")}>
-            <GiPaperBagOpen size={50} color={"white"} />
-            <Span>Bolsones</Span>
-          </Button>
+            <Button type="button" onClick={() => setCategoria("Bolsones")}>
+              <GiPaperBagOpen size={50} color={"white"} />
+              <Span>Bolsones</Span>
+            </Button>
 
-          <Button type="button" onClick={() => setCategoria("Dulces artesanales")}>
-            <GiWrappedSweet size={50} color={"white"} />
-            <Span>Dulces artesanales</Span>
-          </Button>
-        </Grid>
-      </Container>
+            <Button type="button" onClick={() => setCategoria("Dulces artesanales")}>
+              <GiWrappedSweet size={50} color={"white"} />
+              <Span>Dulces artesanales</Span>
+            </Button>
+          </Grid>
+        </Container>
 
-      <Input onChange={searcher} placeholder='Buscar Productos'></Input>
+        <Input onChange={searcher} placeholder='Buscar Productos'></Input>
 
 
 
@@ -206,8 +201,9 @@ const Catalogo = () => {
                 ))
           }
         </GridProductos>
-      
-    </Container>
+      </Container>
+    </>
+
 
   )
 }

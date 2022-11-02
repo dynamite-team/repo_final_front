@@ -12,6 +12,13 @@ import Login from '../views/login/Login';
 import Admin from '../views/panel/Admi';
 import Catalogo from '../views/catalogo/catalogo'
 import Registro from '../views/registro/Register'
+/* -------------View productor------------- */
+import HomeProductor from '../views/vistaProductor/HomeProductor';
+import MisProductosView from '../views/vistaProductor/MisProductos';
+import EstadisticasView from '../views/vistaProductor/Estadisticas';
+import IngresosMensualesView from '../views/vistaProductor/Ingresos';
+
+
 export default function Rutas(){
   return (
   
@@ -24,6 +31,10 @@ export default function Rutas(){
           <Route exact path="/Catalogo" element={<Catalogo/>}/>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/RegistroProductores" element={<Registro/>}/>
+          <Route exact path="/HomeProductor" element={<HomeProductor/>}/>
+          <Route exact path='/MisEstadisticas' element={<EstadisticasView/>}/>
+          <Route exact path='/IngresosMensuales' element={<IngresosMensualesView/>}/>
+          <Route exact path='/MisProductos' element={<MisProductosView/>}/>
         </Routes>
      
     </Router>

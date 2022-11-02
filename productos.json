@@ -1,0 +1,31 @@
+{
+
+       "carrito" : [
+        {
+            "id":1,
+            "producto": "Aguja",
+            "categoria": "Carnes",
+            "precio": 100
+        },
+        {
+            "id":2,
+            "producto": "Banana",
+            "categoria": "Frutas/Verduras",
+            "precio": 100
+        },
+        {
+            "id":3,
+            "producto": "Leche",
+            "categoria": "Lacteos",
+            "precio": 100
+        },
+        {
+            "id":4,
+            "producto": "Yogurt",
+            "categoria": "Lacteos",
+            "precio": 100
+        }
+    ]
+    
+}
+

@@ -21,7 +21,6 @@ const GridProductos = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
   margin: 1% 5% 1% 5%;
-
   @media screen and (max-width: 900px){
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
@@ -29,7 +28,6 @@ const GridProductos = styled.div`
 `;
 const Button = styled.button`
     border-radius: 5px;
-
 `;
 const Footer = styled.div`
     text-align: center;
@@ -98,61 +96,6 @@ const dataProductos = [
 
 ]
 
-function Items({ currentItems }) {
-    return (
-      <>
-        {currentItems &&
-          currentItems.map((item) => (
-            <CardIngresos
-              mes={item.mes}
-              monto={item.monto} />
-          ))}
-      </>
-    );
-  }
-  
-  function PaginatedItems({ itemsPerPage }) {
-  
-    //Items de la pagina 
-    const [currentItems, setCurrentItems] = useState(null);
-    //cantidad de numeros de paginas
-    const [pageCount, setPageCount] = useState(0);
-    //saltos de cantidad de items que se da al ir a otra pagina
-    const [itemOffset, setItemOffset] = useState(0);
-  
-    useEffect(() => {
-      const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-      //Se le pasan los datos que deben aparecer al inicio de la pagina y al final
-      setCurrentItems(items.slice(itemOffset, endOffset));
-      //divide la longitud de los datos por la cantidad especificada de items por pagina
-      //para sacar el total de paginas que deben haber
-      setPageCount(Math.ceil(items.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
-   
-    // Invoke when user click to request another page.
-    const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % items.length;
-      setItemOffset(newOffset);
-    };
-  
-    return (
-      <>
-        <Items currentItems={currentItems} />
-        <ReactPaginate
-          previousLabel={<Button>Anterior</Button>}
-          nextLabel={<Button>Siguiente</Button>}
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination"}
-          previousLinkClassName={"pagination__link"}
-          nextLinkClassName={"pagination__link"}
-          disabledClassName={"pagination__link--disabled"}
-          activeClassName={"pagination__link--active"}
-        />
-      </>
-    );
-  }
 
 function Items({ currentItems }) {
     return (

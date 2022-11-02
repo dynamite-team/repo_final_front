@@ -94,6 +94,35 @@ font-weight: bold;
 ;
 `
 
+const dataCategorias = [
+  {
+    nombre: "CARNES",
+    color: "red"
+  },
+  {
+    nombre: "FRUTAS Y VERDURAS",
+    color: "white"
+  },
+  {
+    nombre: "LÁCTEOS",
+    color: "purple"
+  },
+  {
+    nombre: "BOLSONES",
+    color: "yellow"
+  },
+  {
+    nombre: "DULCES ARTESANALES",
+    color: "blue"
+  }
+]
+
+
+
+
+
+
+
 
 const Catalogo = () => {
   //estado de la lista de todos los productos
@@ -105,13 +134,14 @@ const Catalogo = () => {
   //estado del input
   const [search, setSearch] = useState("");
 
+  
 
   const showData = () => {
     fetch("https://node-saf-api.onrender.com/api/v1/productos")
       .then(response => response.json())
       .then(data => {
         setProductos(data.productos);
-        console.log("productos", productos)
+
       });
   }
 
@@ -142,15 +172,20 @@ const Catalogo = () => {
 
   }, [search])
 
+
   return (
     <>
-    <NavBarBack 
+      <NavBarBack
         color="navbar navbar-expand-lg bg-primary"
-        colorIcon= "white"/> 
+        colorIcon="white" />
       <Container>
         <Title>Encuentra los productos que buscas</Title>
         <Container>
-     {/*      <Grid>
+
+          <Carrusel  />
+
+
+          {/*      <Grid>
             <Button type="button" onClick={() => setCategoria("LACTEOS")}>
               <GiMilkCarton size={50} color={"white"} />
               <Span>Lacteos</Span>
@@ -176,7 +211,7 @@ const Catalogo = () => {
               <Span>Dulces artesanales</Span>
             </Button>
           </Grid> */}
-          <Carrusel />
+
         </Container>
 
         <Input onChange={searcher} placeholder='Buscar Productos'></Input>

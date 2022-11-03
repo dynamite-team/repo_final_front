@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { GiFruitBowl, GiMeat, GiMilkCarton, GiPaperBagOpen, GiWrappedSweet } from "react-icons/gi";
 import { useEffect } from 'react';
 import NavBarBack from '../../components/navbars/NavBarBack';
-import Carrusel from '../../components/carrusel/carruselProductos';
+import { Carousel } from '@trendyol-js/react-carousel';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 
 const Container = styled.div`
@@ -67,12 +68,12 @@ const Item = styled.div`
   border-radius : 20px;
   height: 100px;
 `;
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 50px 50px;
-  grid-gap: 15px;
-  position:relative;
+const ItemCategory = styled.div`
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold
 `;
 const GridProductos = styled.div`
   display: grid;
@@ -86,37 +87,36 @@ const GridProductos = styled.div`
     grid-gap: 10px;
   }
 `;
-const Span = styled.div`
-position:absolute;
-bottom:0;
-font-family: Monserrat;
-font-weight: bold;
-;
-`
+
+
 
 const dataCategorias = [
   {
+    id: 1,
     nombre: "CARNES",
     color: "red"
   },
   {
+    id: 2,
     nombre: "FRUTAS Y VERDURAS",
-    color: "white"
+    color: "pink"
   },
   {
+    id: 3,
     nombre: "LÁCTEOS",
     color: "purple"
   },
   {
+    id: 4,
     nombre: "BOLSONES",
     color: "yellow"
   },
   {
+    id: 5,
     nombre: "DULCES ARTESANALES",
     color: "blue"
   }
 ]
-
 
 
 
@@ -134,21 +134,16 @@ const Catalogo = () => {
   //estado del input
   const [search, setSearch] = useState("");
 
-  
 
+  //Llamada a la api 
   const showData = () => {
     fetch("https://node-saf-api.onrender.com/api/v1/productos")
       .then(response => response.json())
       .then(data => {
         setProductos(data.productos);
-
       });
   }
 
-  //Función que guarda el valor de lo que se escribe en el input
-  const searcher = (e) => {
-    setSearch(e.target.value)
-  }
 
   useEffect(() => {
     showData();
@@ -160,16 +155,20 @@ const Catalogo = () => {
     setFiltrado(productos.filter((element) => element.categoria.nombre === categoria))
   }, [categoria])
 
+  //Función que guarda el valor de lo que se escribe en el input
+  const searcher = (e) => {
+    setSearch(e.target.value)
+  }
+
   //Se filtran los productos cada vez que se modifica el estado del buscador
   useEffect(() => {
     if (!search) {
       setFiltrado(productos)
     } else {
-      setFiltrado(productos.filter((dato) =>
-        dato.producto.toLowerCase().includes(search.toLocaleLowerCase())))
+      setFiltrado(productos.filter(producto =>
+        producto.nombre.includes(search.toUpperCase())))
     }
     console.log(filtrado)
-
   }, [search])
 
 
@@ -181,42 +180,19 @@ const Catalogo = () => {
       <Container>
         <Title>Encuentra los productos que buscas</Title>
         <Container>
-
-          <Carrusel  />
-
-
-          {/*      <Grid>
-            <Button type="button" onClick={() => setCategoria("LACTEOS")}>
-              <GiMilkCarton size={50} color={"white"} />
-              <Span>Lacteos</Span>
-            </Button>
-
-            <Button type="button" onClick={() => setCategoria("CARNES")}>
-              <GiMeat size={50} color={"white"} />
-              <Span>Carnes</Span>
-            </Button>
-
-            <Button type="button" onClick={() => setCategoria("FRUTAS Y VERDURAS")}>
-              <GiFruitBowl size={50} color={"white"} />
-              <Span>Frutas/Verduras</Span>
-            </Button>
-
-            <Button type="button" onClick={() => setCategoria("BOLSONES")}>
-              <GiPaperBagOpen size={50} color={"white"} />
-              <Span>Bolsones</Span>
-            </Button>
-
-            <Button type="button" onClick={() => setCategoria("DULCES ARTESANALES")}>
-              <GiWrappedSweet size={50} color={"white"} />
-              <Span>Dulces artesanales</Span>
-            </Button>
-          </Grid> */}
-
+          <Carousel show={3.5} slide={2} transition={0.5} responsive={true}
+            leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '300%' }} />}
+            rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '300%' }} />} >
+            {
+              dataCategorias.map((item) => (
+                <ItemCategory key={item.id} style={{ "backgroundColor": `${item.color}` }}
+                  onClick={() => setCategoria(item.nombre)}>{item.nombre}</ItemCategory>
+              ))
+            }
+          </Carousel>
         </Container>
 
         <Input onChange={searcher} placeholder='Buscar Productos'></Input>
-
-
 
         <GridProductos>
           {

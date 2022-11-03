@@ -156,6 +156,8 @@ const PaginatedItems = ({ itemsPerPage }) => {
         </>
     );
 }
+
+
 const MisProductosView = () => {
 
     return (

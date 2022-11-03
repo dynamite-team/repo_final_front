@@ -8,9 +8,8 @@ import {
 import Home from '../views/home/Home';
 import Info from '../views/informacion/Info';
 import Login from '../views/login/Login';
-import Admin from '../views/panel/Admi';
 import Catalogo from '../views/catalogo/catalogo'
-import Registro from '../views/registro/Register'
+
 /* -------------View productor------------- */
 import HomeProductor from '../views/vistaProductor/HomeProductor';
 import MisProductosView from '../views/vistaProductor/MisProductos';
@@ -23,11 +22,9 @@ export default function Rutas() {
     <Router>
       <Routes>
         <Route exact path="/Informacion" element={<Info />} />
-        <Route exact path="/Panel" element={<Admin />} />
         <Route exact path="/Iniciosesion" element={<Login />} />
         <Route exact path="/Catalogo" element={<Catalogo />} />
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/RegistroProductores" element={<Registro />} />
         <Route exact path="/HomeProductor" element={<HomeProductor />} />
         <Route exact path='/MisEstadisticas' element={<EstadisticasView />} />
         <Route exact path='/IngresosMensuales' element={<IngresosMensualesView />} />

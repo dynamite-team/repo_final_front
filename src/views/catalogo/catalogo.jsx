@@ -98,7 +98,7 @@ const dataCategorias = [
   {
     id: 4,
     nombre: "BOLSONES",
-    color: "yellow"
+    color: "green"
   },
   {
     id: 5,
@@ -188,7 +188,7 @@ const Catalogo = () => {
   
         <Title>Encuentra los productos que buscas</Title>
         <Container>
-          <Carousel show={3.5} slide={2} transition={0.5} responsive={true}
+          <Carousel show={4.5} slide={2} transition={0.5} responsive={true}
             leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '300%' }} />}
             rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '300%' }} />} >
             {

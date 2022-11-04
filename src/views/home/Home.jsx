@@ -13,7 +13,6 @@ left: 0px;
  width:100%;
  height:587px
 `;
-
 const Imgestrella = styled.img`
 width:40%;
 height:500px;
@@ -21,10 +20,7 @@ height:500px;
   top: 40px;
  left: 10px;
 `;
-
-
 const Footer = styled.div`
-  
 width:57px;
 height:316px;
 position:absolute;
@@ -33,7 +29,6 @@ position:absolute;
 top:1500px;
 overflow-x: hidden;
 `;
-
 const Iconcards = styled.div`
 position: relative;
 
@@ -45,7 +40,6 @@ transform-origin: center;
 top: 400px;
 left: 420px;
 `;
-
 const Cardscontent = styled.div`
 position: absolute;
 width: 100%;
@@ -55,13 +49,11 @@ transform-style: preserve-3d;
 transform: translateZ(-30vw) rotateY(0);
 animation: carousel 10s infinite cubic-bezier(0.90, 0, 0.175, 1) forwards;
 `;
-
 const Left = styled.div`
 padding: 40px
 width: 50%;
 height: 50vh
 `;
-
 const Wrapper2 = styled.div`
 height: 50%;
 display: flex;

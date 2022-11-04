@@ -55,7 +55,7 @@ const HomeProductor = () => {
                             </div>
                             <hr />
                             <MenuItem icon={<AiOutlineInfoCircle />} href="/Informacion">Acerca del programa</MenuItem>
-                            <MenuItem icon={<FiLogOut />}>CERRAR SESION</MenuItem>
+                            <MenuItem icon={<FiLogOut />} href="/">CERRAR SESION</MenuItem>
                         </Menu>
                     </ProSidebarProvider>
                 </Left>

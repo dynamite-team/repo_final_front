@@ -1,14 +1,11 @@
 import Card from 'react-bootstrap/Card';
 
-const CardProducto = ({nombre, imagen}) => {
+const CardProducto = (props) => {
     return (
-        <Card style={{ width: '250px' }}>
-          <Card.Img style={{"width": "200px", "height": "200px"}} variant="top" src={imagen} />
+        <Card style={{ 'width': '250px' }}>
+          <Card.Img style={{'width': '150px', 'height': '150px', 'margin': 'auto'}} variant="top" src={props.img} />
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              {nombre}
-            </Card.Text>
+            <Card.Title style={{'font-family': 'Cambria'}}>{props.producto}</Card.Title>
           </Card.Body>
         </Card>
       );

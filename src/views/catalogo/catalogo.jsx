@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { GiFruitBowl, GiMeat, GiMilkCarton, GiPaperBagOpen, GiWrappedSweet } from "react-icons/gi";
 import { useEffect } from 'react';
 import NavBarBack from '../../components/navbars/NavBarBack';
 import { Carousel } from '@trendyol-js/react-carousel';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import CardProductoCat from '../../components/cards/cardProdCatalogo';
+import imagen2 from '../../assets/banner-menu.png'
+import imagen3 from '../../assets/banner-promocions.png'
+import imagen4 from '../../assets/banner-ubicacion.png'
 
 
 const Container = styled.div`
@@ -26,54 +29,32 @@ const Title = styled.h1`
 `;
 const Input = styled.input`
   font-size: 18px;
+  font-family: Cambria;
   padding: 10px;
   margin: 10px;
-  background: #DCDFDF;
-  border-size: 50px; 
-  border-radius: 3px;
-  ::placeholder {
-    color: #858585;
-  }
+  background: #F5F5F5;
+  border-radius: 20px;
+  border-color: white;
   width: 100vh;
+  outline: none;
+  :placeholder {
+    color: #666666 ;
+  }
+  :focus{
+    border-color: #A5A2A2 ;
+  }
+
   @media screen and (max-width: 900px){
     width:80vh
   }
 `;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: .5rem;
-  background-color: #9ADFFE;
-  border-radius : 20px;
-  height: 21vh;
-
-  @media screen and (min-width: 1000px){
-    display: flex;
-    justify-content: center;
-    padding: .1rem;
-    background-color: #9ADFFD;
-    border-radius : 10px;
-    height: 18vh;
-  }
-  :hover{
-    border: 1px solid #000
-  }
-  
-`;
-const Item = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: .5rem;
-  background-color: #9ADFFE;
-  border-radius : 20px;
-  height: 100px;
-`;
 const ItemCategory = styled.div`
   width: 200px;
-  height: 200px;
+  height: 150px;
   border-radius: 20px;
   color: white;
-  font-weight: bold
+  font-weight: bold;
+  font-family: Cambria;
 `;
 const GridProductos = styled.div`
   display: grid;
@@ -87,7 +68,15 @@ const GridProductos = styled.div`
     grid-gap: 10px;
   }
 `;
+const ContainerCarrusel = styled.div`
+  width: 100%;
+  margin: 1% 2% 1% 2%
 
+`;
+const ItemCarrusel = styled.div`
+  width: 95%;
+  height: 10%;
+`;
 
 
 const dataCategorias = [
@@ -118,11 +107,20 @@ const dataCategorias = [
   }
 ]
 
-
-
-
-
-
+const ArrayImagenes = [
+  {
+    id: 1,
+    img: `${imagen2}`
+  },
+  {
+    id: 2,
+    img: `${imagen3}`
+  },
+  {
+    id: 3,
+    img: `${imagen4}`
+  }
+]
 
 const Catalogo = () => {
   //estado de la lista de todos los productos
@@ -134,7 +132,6 @@ const Catalogo = () => {
   //estado del input
   const [search, setSearch] = useState("");
 
-
   //Llamada a la api 
   const showData = () => {
     fetch("https://node-saf-api.onrender.com/api/v1/productos")
@@ -143,7 +140,6 @@ const Catalogo = () => {
         setProductos(data.productos);
       });
   }
-
 
   useEffect(() => {
     showData();
@@ -171,13 +167,25 @@ const Catalogo = () => {
     console.log(filtrado)
   }, [search])
 
-
   return (
     <>
       <NavBarBack
         color="navbar navbar-expand-lg bg-primary"
         colorIcon="white" />
       <Container>
+        <ContainerCarrusel>
+          <Carousel show={1} swipeOn hideArrows responsive={true}>
+            {
+              ArrayImagenes.map((item) => (
+                <ItemCarrusel key={item.id}>
+                  <img src={item.img} style={{ 'objectFit': 'cover', 'width': '100%', 'height':'200px', 'imageRendering':'pixelated'}} />
+                </ItemCarrusel>
+              ))
+            }
+          </Carousel>
+        </ContainerCarrusel>
+
+  
         <Title>Encuentra los productos que buscas</Title>
         <Container>
           <Carousel show={3.5} slide={2} transition={0.5} responsive={true}
@@ -186,7 +194,10 @@ const Catalogo = () => {
             {
               dataCategorias.map((item) => (
                 <ItemCategory key={item.id} style={{ "backgroundColor": `${item.color}` }}
-                  onClick={() => setCategoria(item.nombre)}>{item.nombre}</ItemCategory>
+                  onClick={() => setCategoria(item.nombre)}>
+                  <div>{item.nombre}</div>
+                  <div style={{ "marginTop": "20%" }}>ICON</div>
+                </ItemCategory>
               ))
             }
           </Carousel>
@@ -201,18 +212,20 @@ const Catalogo = () => {
               ? filtrado
                 .map((producto) => (
                   <tr key={producto._id}>
-                    <Item type="button">{producto.nombre}</Item>
+                    <CardProductoCat
+                      {...producto} />
                   </tr>
                 ))
-
               //filtra por input
               : filtrado
                 .map((producto) => (
                   <tr key={producto._id}>
-                    <Item type="button">{producto.nombre}</Item>
+                    <CardProductoCat
+                      {...producto} />
                   </tr>
                 ))
           }
+
         </GridProductos>
       </Container>
     </>

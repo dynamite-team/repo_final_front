@@ -3,7 +3,6 @@ import NavBarBack from "../../components/navbars/NavBarBack";
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
 
-
 const ContainerGrafico = styled.div`
     align-items: stretch;
     display: row;
@@ -42,13 +41,7 @@ const EstadisticasView = () => {
         }
         setLabels(labelss);
         setValues(valuess)
-
-console.log("l",labels)
-console.log("v",values)
-       
-    }
-
- 
+    } 
     return (
         <>
             <NavBarBack
@@ -59,7 +52,6 @@ console.log("v",values)
                 <BarChart datosValues={values}
                 datosLabels={labels} />
             </ContainerGrafico>
-
         </>
     )
 }

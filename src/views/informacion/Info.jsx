@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import ReactPlayer from 'react-player';
 import NavBarBack from '../../components/navbars/NavBarBack';
 
-
-
 const Container = styled.div`
 width: fit-content;
 height: fit-content;
@@ -17,7 +15,7 @@ const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   color: black;
-  font-family: concert one;
+  font-family: Cambria;
   padding: 20px;
 `;
 const Title2 = styled.h3`
@@ -25,12 +23,12 @@ const Title2 = styled.h3`
   margin-left: 60px;
   margin-bottom: 0px;
   font-size: 30px;
-  font-family: Montserrat;
+  font-family: Cambria;
   font-weight: bold;
 `;
 const Parrafo = styled.p`
   text-align: justify;
-  font-family: Montserrat;
+  font-family: Cambria;
   text-indent: 10px;
   margin-left: 50px;
   margin-right: 30px; 
@@ -71,8 +69,8 @@ export default function Info() {
   return (
     <>
        <NavBarBack
-    color="navbar navbar-expand-lg bg-primary"
-    colorIcon= "white"/>
+        color="navbar navbar-expand-lg bg-primary"
+        colorIcon= "white"/>
       <Container>
         <Wrapper2>
           <Left>
@@ -86,8 +84,6 @@ export default function Info() {
               <strong>Soberanía Alimentaria Formoseña</strong> es un programa que ofrece alimentos directamente del productor al consumidor, es decir,
               sin que existan intermediarios y agregados de valor entre la comercialización y las familias.
             </Parrafo>
-
-
           </Left>
           <Right>
             <img src="https://scontent.fcor3-1.fna.fbcdn.net/v/t1.6435-9/153659362_3027439987472109_1776575738075615055_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=aq1ZhTabXkIAX_BfT2s&_nc_oc=AQmXKJ0pHAwXd9WR5v9tJPCCb0CRhzsCwwZnCXR6SI9lgjyatkFquxm5QoRjh8ieB2o&_nc_ht=scontent.fcor3-1.fna&oh=00_AT-yVQl5iCh1zln-O7zC6bJWD8Qauwj6q3x1lOgJeXWDcA&oe=6361D58C"
@@ -95,19 +91,14 @@ export default function Info() {
           </Right>
         </Wrapper2>
 
-
         <Wrapper>
           <Left>
-
             <ReactPlayer
               url='https://www.facebook.com/watch/?v=464114538160131'
               playing
               width='100%'
               height='100%'
               style={{ marginLeft: '40px', marginBottom: '80px' }} />
-
-
-
             <Parrafo>
               De esta forma, los formoseños puede acceder
               a una gran variedad de alimentos de producción local a precios referenciados. Desde frutas, verduras, hortalizas, carnes,
@@ -119,7 +110,6 @@ export default function Info() {
               Mediante cronogramas el programa recorrerá todas las jurisdicciones de la provincia de Formosa para asegurarse de llegar a los
               lugares en donde se dan las mayores asimetrías en costos de producción y los precios que pagan los consumidores finales.
             </Parrafo>
-
           </Left>
 
           <Right>
@@ -182,11 +172,8 @@ export default function Info() {
               </Accordion>
             </Preguntas>
           </Right>
-
         </Wrapper>
-
       </Container>
-
     </>
   )
 }

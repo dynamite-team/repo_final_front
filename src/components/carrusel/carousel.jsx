@@ -1,17 +1,38 @@
-import { Carousel } from '@trendyol-js/react-carousel';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import HeroSlider, { Slide } from "hero-slider"
+import imagen2 from '../../assets/banner-menu.png'
+import imagen3 from '../../assets/banner-promocions.png'
+import imagen4 from '../../assets/banner-ubicacion.png'
 
-const Carrusel = (props) => {
+const Carrusel = () => {
     return (
-        <>
-            <Carousel show={3.5} slide={2} transition={0.5}
-            leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '300%' }} />}
-            rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '300%' }} />} >
-            <div>{props.img}</div>
-          </Carousel>
-        </>
+        <HeroSlider
+            height={"50vh"}
+            autoplay
+            controller={{
+                initialSlide: 1,
+                slidingDuration: 200,
+                slidingDelay: 50,
+            }}
+        >
+            <Slide
+                background={{
+                    backgroundImageSrc: imagen2
+                }} 
+            />
+            <Slide
+                background={{
+                    backgroundImageSrc: imagen3
+                }} 
+            />
+            <Slide
+                background={{
+                    backgroundImageSrc: imagen4
+                }} 
+            />
 
-    );
+        </HeroSlider>
+    )
 }
 
-export default Carrusel;
+export default Carrusel
+

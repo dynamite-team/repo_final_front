@@ -5,16 +5,15 @@ import NavBarBack from '../../components/navbars/NavBarBack';
 import { Carousel } from '@trendyol-js/react-carousel';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import CardProductoCat from '../../components/cards/cardProdCatalogo';
-import imagen2 from '../../assets/banner-menu.png'
-import imagen3 from '../../assets/banner-promocions.png'
-import imagen4 from '../../assets/banner-ubicacion.png'
-
+/* 
+ */
+import Carrusel from '../../components/carrusel/carousel';
 
 const Container = styled.div`
     background-color: white;
     padding: 10px;
     text-align: center;
-    margin: 35px 35px 35px 35px;
+    margin: 15px 15px 15px 15px
 `;
 const Title = styled.h1`
   text-align: center;
@@ -22,6 +21,8 @@ const Title = styled.h1`
   font-family: Cambria;
   padding: 20px;
   font-size: 40px;
+  margin-top:3%;
+  margin-bottom:3%;
   @media screen and (max-width: 900px){
     font-size: 30px;
     text-align: center;
@@ -31,7 +32,8 @@ const Input = styled.input`
   font-size: 18px;
   font-family: Cambria;
   padding: 10px;
-  margin: 10px;
+  margin-top: 3%;
+  margin-bottom: 3%;
   background: #F5F5F5;
   border-radius: 20px;
   border-color: white;
@@ -70,13 +72,10 @@ const GridProductos = styled.div`
 `;
 const ContainerCarrusel = styled.div`
   width: 100%;
-  margin: 1% 2% 1% 2%
+  margin: auto
 
 `;
-const ItemCarrusel = styled.div`
-  width: 95%;
-  height: 10%;
-`;
+
 
 
 const dataCategorias = [
@@ -107,7 +106,7 @@ const dataCategorias = [
   }
 ]
 
-const ArrayImagenes = [
+/* const ArrayImagenes = [
   {
     id: 1,
     img: `${imagen2}`
@@ -121,7 +120,7 @@ const ArrayImagenes = [
     img: `${imagen4}`
   }
 ]
-
+ */
 const Catalogo = () => {
   //estado de la lista de todos los productos
   const [productos, setProductos] = useState([]);
@@ -174,7 +173,7 @@ const Catalogo = () => {
         colorIcon="white" />
       <Container>
         <ContainerCarrusel>
-          <Carousel show={1} swipeOn hideArrows responsive={true}>
+         {/*  <Carousel show={1} autoSwipe={true}  responsive={true} >
             {
               ArrayImagenes.map((item) => (
                 <ItemCarrusel key={item.id}>
@@ -182,28 +181,31 @@ const Catalogo = () => {
                 </ItemCarrusel>
               ))
             }
-          </Carousel>
-        </ContainerCarrusel>
+          </Carousel> */}
+
+          <Carrusel/>
+        </ContainerCarrusel> 
 
   
         <Title>Encuentra los productos que buscas</Title>
-        <Container>
+        <ContainerCarrusel>
           <Carousel show={4.5} slide={2} transition={0.5} responsive={true}
-            leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '300%' }} />}
-            rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '300%' }} />} >
+            leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '200%' }} />}
+            rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '200%' }} />} >
             {
               dataCategorias.map((item) => (
                 <ItemCategory key={item.id} style={{ "backgroundColor": `${item.color}` }}
                   onClick={() => setCategoria(item.nombre)}>
-                  <div>{item.nombre}</div>
-                  <div style={{ "marginTop": "20%" }}>ICON</div>
+                  <div style={{"margin": "auto"}}>{item.nombre}</div>
+                  <div>ICON</div>
                 </ItemCategory>
               ))
             }
           </Carousel>
-        </Container>
+        </ContainerCarrusel>
 
         <Input onChange={searcher} placeholder='Buscar Productos'></Input>
+          
 
         <GridProductos>
           {

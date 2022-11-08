@@ -4,7 +4,7 @@ import { Image, Transformation } from "cloudinary-react";
 const CardProductoCat = (props) => {
     return (
         <Card style={{ 'width': '200px','height':'300px' ,
-        'box-shadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px', 'borderRadius':'15px',
+        'boxShadow': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px', 'borderRadius':'15px',
         'borderColor':'#D4D4D4'}}>
          <Image cloudName="dawjd5cx8" publicId={props.img}>
             <Transformation

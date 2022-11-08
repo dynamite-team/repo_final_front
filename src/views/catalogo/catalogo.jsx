@@ -5,15 +5,16 @@ import NavBarBack from '../../components/navbars/NavBarBack';
 import { Carousel } from '@trendyol-js/react-carousel';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import CardProductoCat from '../../components/cards/cardProdCatalogo';
-/* 
- */
-import Carrusel from '../../components/carrusel/carousel';
+import imagen2 from '../../assets/banner-menu.png'
+import imagen3 from '../../assets/banner-promocions.png'
+import imagen4 from '../../assets/banner-ubicacion.png'
+import ItemCategories from '../../components/cards/cardCategory';
 
 const Container = styled.div`
     background-color: white;
     padding: 10px;
     text-align: center;
-    margin: 15px 15px 15px 15px
+    margin: 35px 35px 35px 35px;
 `;
 const Title = styled.h1`
   text-align: center;
@@ -21,8 +22,6 @@ const Title = styled.h1`
   font-family: Cambria;
   padding: 20px;
   font-size: 40px;
-  margin-top:3%;
-  margin-bottom:3%;
   @media screen and (max-width: 900px){
     font-size: 30px;
     text-align: center;
@@ -32,8 +31,7 @@ const Input = styled.input`
   font-size: 18px;
   font-family: Cambria;
   padding: 10px;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin: 10px;
   background: #F5F5F5;
   border-radius: 20px;
   border-color: white;
@@ -50,14 +48,6 @@ const Input = styled.input`
     width:80vh
   }
 `;
-const ItemCategory = styled.div`
-  width: 200px;
-  height: 150px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  font-family: Cambria;
-`;
 const GridProductos = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -72,41 +62,19 @@ const GridProductos = styled.div`
 `;
 const ContainerCarrusel = styled.div`
   width: 100%;
-  margin: auto
+  margin: 1% 2% 1% 2%
 
+`;
+const ItemCarrusel = styled.div`
+  width: 95%;
+  height: 10%;
 `;
 
 
 
-const dataCategorias = [
-  {
-    id: 1,
-    nombre: "CARNES",
-    color: "red"
-  },
-  {
-    id: 2,
-    nombre: "FRUTAS Y VERDURAS",
-    color: "pink"
-  },
-  {
-    id: 3,
-    nombre: "LÁCTEOS",
-    color: "purple"
-  },
-  {
-    id: 4,
-    nombre: "BOLSONES",
-    color: "green"
-  },
-  {
-    id: 5,
-    nombre: "DULCES ARTESANALES",
-    color: "blue"
-  }
-]
 
-/* const ArrayImagenes = [
+
+const ArrayImagenes = [
   {
     id: 1,
     img: `${imagen2}`
@@ -120,7 +88,7 @@ const dataCategorias = [
     img: `${imagen4}`
   }
 ]
- */
+
 const Catalogo = () => {
   //estado de la lista de todos los productos
   const [productos, setProductos] = useState([]);
@@ -131,6 +99,9 @@ const Catalogo = () => {
   //estado del input
   const [search, setSearch] = useState("");
 
+  const [dataCategorias, setDataCategorias] = useState([])
+
+
   //Llamada a la api 
   const showData = () => {
     fetch("https://node-saf-api.onrender.com/api/v1/productos")
@@ -138,6 +109,13 @@ const Catalogo = () => {
       .then(data => {
         setProductos(data.productos);
       });
+
+    fetch('https://node-saf-api.onrender.com/api/v1/categorias')
+      .then(response2 => response2.json())
+      .then(data2 => {
+        setDataCategorias(data2.categorias)
+
+      })
   }
 
   useEffect(() => {
@@ -163,7 +141,6 @@ const Catalogo = () => {
       setFiltrado(productos.filter(producto =>
         producto.nombre.includes(search.toUpperCase())))
     }
-    console.log(filtrado)
   }, [search])
 
   return (
@@ -173,39 +150,42 @@ const Catalogo = () => {
         colorIcon="white" />
       <Container>
         <ContainerCarrusel>
-         {/*  <Carousel show={1} autoSwipe={true}  responsive={true} >
+          <Carousel show={1} swipeOn hideArrows responsive={true}>
             {
               ArrayImagenes.map((item) => (
                 <ItemCarrusel key={item.id}>
-                  <img src={item.img} style={{ 'objectFit': 'cover', 'width': '100%', 'height':'200px', 'imageRendering':'pixelated'}} />
+                  <img src={item.img} style={{ 'objectFit': 'cover', 'width': '100%', 'height': '200px', 'imageRendering': 'pixelated' }} />
                 </ItemCarrusel>
-              ))
-            }
-          </Carousel> */}
-
-          <Carrusel/>
-        </ContainerCarrusel> 
-
-  
-        <Title>Encuentra los productos que buscas</Title>
-        <ContainerCarrusel>
-          <Carousel show={4.5} slide={2} transition={0.5} responsive={true}
-            leftArrow={<IoIosArrowBack size={30} style={{ 'marginTop': '200%' }} />}
-            rightArrow={<IoIosArrowForward size={30} style={{ 'marginTop': '200%' }} />} >
-            {
-              dataCategorias.map((item) => (
-                <ItemCategory key={item.id} style={{ "backgroundColor": `${item.color}` }}
-                  onClick={() => setCategoria(item.nombre)}>
-                  <div style={{"margin": "auto"}}>{item.nombre}</div>
-                  <div>ICON</div>
-                </ItemCategory>
               ))
             }
           </Carousel>
         </ContainerCarrusel>
 
-        <Input onChange={searcher} placeholder='Buscar Productos'></Input>
+        <Title>Encuentra los productos que buscas</Title>
+        <Container>
           
+
+              {
+                dataCategorias.map((item) => (
+                  <ItemCategories 
+                  {...item}/>
+                ))
+              }
+        
+       {/*      {
+              dataCategorias.map((item) => (
+
+                <ItemCategory key={item.uid} style={{ "backgroundColor":'pink' }}
+                onClick={() => setCategoria(item.nombre)}>
+                <div style={{"margin": "auto"}}>{item.nombre}</div>
+                <div>ICON</div>
+              </ItemCategory>
+              ))
+            } */}
+         
+        </Container>
+
+        <Input onChange={searcher} placeholder='Buscar Productos'></Input>
 
         <GridProductos>
           {
@@ -227,12 +207,9 @@ const Catalogo = () => {
                   </tr>
                 ))
           }
-
         </GridProductos>
       </Container>
     </>
-
-
   )
 }
 

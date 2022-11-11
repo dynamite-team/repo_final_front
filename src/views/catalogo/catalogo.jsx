@@ -8,6 +8,7 @@ import NavBarBack from '../../components/navbars/NavBarBack';
 import CardProductoCat from '../../components/cards/cardProdCatalogo';
 import CarruselPublicidad from '../../components/carruselPubli';
 import SpinnerCarga from '../../components/spinners/spinnerCargaProd';
+import ModalUbi from '../../components/modals/modal.ubi';
 
 const Container = styled.div`
     background-color: white;
@@ -33,17 +34,15 @@ const Input = styled.input`
   margin: 1% 2% 1% 2%;
   background: #F5F5F5;
   border-radius: 20px;
-  border-color: white;
+  border-color: #B1B1B1;
   width: 100vh;
+  height: 50px;
   outline: none;
   :placeholder {
     color: #666666 ;
   }
   :focus{
     border-color: #A5A2A2 ;
-  }
-  @media screen and (max-width: 900px){
-    width:80vh
   }
 `;
 const GridProductos = styled.div`
@@ -63,7 +62,23 @@ const ItemCategorias = styled.div`
   border-radius: 20px;
   margin: auto;
 `;
-
+const Button = styled.button`
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #64BD50;
+  font-family: Cambria;
+  font-weight: bold;
+  color: white;
+  border-color: #B1B1B1 ;
+`;
+const Label = styled.label`
+  display: block;
+  margin-top: 15%; 
+  color: white;
+  font-weight: bold;
+  font-family: Cambria
+`;
 
 const Catalogo = () => {
   //estado de la lista de todos los productos
@@ -75,33 +90,48 @@ const Catalogo = () => {
   //estado del input
   const [search, setSearch] = useState("");
   //estado de la data de categorias (fetch a la api)
-  const [dataCategorias, setDataCategorias] = useState([])
+  const [dataCategorias, setDataCategorias] = useState([]);
   //estado de la carga de peticiones
-  const [loading, setLoading] = useState(true)
-
-  const [primeraVez, setPrimeraVez] = useState(true)
+  const [loading, setLoading] = useState(true);
+  //estado para la primera vez que se renderizan los productos en el catalogo
+  const [primeraVez, setPrimeraVez] = useState(true);
+  //estado de puntos de ubicacion
+  const [puntos, setPuntos] = useState([]);
+  //estado de los valores del select de ubicaciones
+  const [valorSelect, setValorSelect] = useState(null)
 
 
   //Llamada a la api 
   const showData = () => {
-    fetch("https://node-saf-api.onrender.com/api/v1/productos?desde=0&limite=100")
-  /*    {&punto=635abb0158786cb20862d056} */
+
+    fetch('https://node-saf-api.onrender.com/api/v1/puntos')
       .then(response => response.json())
       .then(data => {
-        setProductos(data.productos);
-        setLoading(false)
-      });
+        setPuntos(data.puntos)
+      })
 
     fetch('https://node-saf-api.onrender.com/api/v1/categorias?desde=0&limite=100')
-      .then(response2 => response2.json())
-      .then(data2 => {
-        setDataCategorias(data2.categorias)
+      .then(response => response.json())
+      .then(data => {
+        setDataCategorias(data.categorias)
       })
   }
 
+  //Cada vez que el select de ubicacion se modifique se va a llamar a la api con el punto elegido
+  useEffect(() => {
+    fetch(`https://node-saf-api.onrender.com/api/v1/productos?desde=0&limite=100&punto=${valorSelect}`)
+      .then(response => response.json())
+      .then(data => {
+        setProductos(data.productos);
+        console.log("productos de esta ruta", productos)
+        setLoading(false)
+      })
+  }, [valorSelect])
+
+
+  //Hace las consultas a las apis cuando se renderiza 
   useEffect(() => {
     showData();
-
   }, [])
   //cada vez que se realiza una modificacion de eleccion de categoria
   //se filtran los productos
@@ -123,7 +153,6 @@ const Catalogo = () => {
     }
   }, [search])
 
-
   //Items de carrusel de categorias
   const items = dataCategorias.map((item) => {
     return <ItemCategorias key={item.uid} type='button' onClick={() => {
@@ -138,9 +167,9 @@ const Catalogo = () => {
           crop="fill"
         />
       </Image>
-      <label style={{ "display": "block", "marginTop": "15%", "color": "white", "fontWeight": "bold", "fontFamily": "Cambria" }}>
+      <Label>
         {item.nombre}
-      </label>
+      </Label>
     </ItemCategorias>
   })
   //Carrusel responsive
@@ -149,6 +178,7 @@ const Catalogo = () => {
     568: { items: 2 },
     1024: { items: 4.5 },
   };
+
 
 
   return (
@@ -175,60 +205,67 @@ const Catalogo = () => {
           />
         </Container>
 
+
+        <ModalUbi 
+          puntos={puntos}
+          setValorSelect={setValorSelect}
+        />
         <Input onChange={searcher} placeholder='Buscar Productos'></Input>
-        <button onClick={()=> setPrimeraVez(true)} >Ver todos</button>
+        <Button onClick={() => setPrimeraVez(true)}>Ver todos</Button>
 
         {/* {-----------GRID DE PRODUCTOS-------------} */}
 
         {
-          loading ? <SpinnerCarga />
-            :
+          valorSelect ?
             <>
-              <GridProductos>
-                {
-
-                  primeraVez ? productos.map((producto) => (
-                    <tr key={producto._id}>
-                      <CardProductoCat
-                        {...producto} />
-                    </tr>
-                  ))
-
-                    :
-                    <>
+              {
+                loading ? <SpinnerCarga />
+                  :
+                  <>
+                    <GridProductos>
                       {
-                        //Si filtrado no tiene nada me muestra todos los productos 
-                        filtrado == "" ?
-                          <div>No se han encontrado productos en esta categoria</div>
+                        primeraVez ? productos.map((producto) => (
+                          <CardProductoCat
+                            {...producto} />
+                        ))
                           :
                           <>
                             {
-                              //Filtra por categoria
-                              categoria !== ""
-                                ? filtrado
-                                  .map((producto) => (
-                                    <tr key={producto._id}>
-                                      <CardProductoCat
-                                        {...producto} />
-                                    </tr>
-                                  ))
-                                //filtra por input
-                                : filtrado
-                                  .map((producto) => (
-                                    <tr key={producto._id}>
-                                      <CardProductoCat
-                                        {...producto} />
-                                    </tr>
-                                  ))
+                              //Si filtrado no tiene nada me muestra todos los productos 
+                              filtrado == "" ?
+                                <div>No se han encontrado productos en esta categoria</div>
+                                :
+                                <>
+                                  {
+                                    //Filtra por categoria
+                                    categoria !== ""
+                                      ? filtrado
+                                        .map((producto) => (
+                                          <CardProductoCat
+                                            {...producto} />
+                                        ))
+                                      //filtra por input
+                                      : filtrado
+                                        .map((producto) => (
+                                          <CardProductoCat
+                                            {...producto} />
+                                        ))
+                                  }
+                                </>
                             }
                           </>
                       }
-                    </>
-
-                }
-              </GridProductos>
+                    </GridProductos>
+                  </>
+              }
             </>
+
+            :
+            <div style={{ "fontFamily": "Cambria", "fontSize": "20px", "marginTop": "1%" }}>
+              ¡Seleccione un lugar para ver la disponibilidad de productos!
+            </div>
         }
+
       </Container>
     </>
   )

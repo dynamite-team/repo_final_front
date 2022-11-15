@@ -39,18 +39,6 @@ const theme = createTheme();
 
 //LOGIN
 const Login = ({fetchUsuario }) => {
-
-
-
-//REDUX
-
-
-
-
-  /* CARGAR DATOS */
-
-
-
   //const [email, setUsuario] = useState('')
   const[errorMessage, setErrorMessage] = useState (null)
 

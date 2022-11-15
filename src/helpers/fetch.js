@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:4000/api'
+const baseUrl = 'http://localhost:5000/apis'
 
 const fetchSinToken = ( endpoint, data, method = 'GET' ) => {
 

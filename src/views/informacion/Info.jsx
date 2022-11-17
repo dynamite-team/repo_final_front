@@ -6,6 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ReactPlayer from 'react-player';
 import NavBarBack from '../../components/navbars/NavBarBack';
+import Logo from '../../assets/img/logo.jpg'
 
 const Container = styled.div`
 width: fit-content;
@@ -86,7 +87,7 @@ export default function Info() {
             </Parrafo>
           </Left>
           <Right>
-            <img src="https://scontent.fcor3-1.fna.fbcdn.net/v/t1.6435-9/153659362_3027439987472109_1776575738075615055_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=aq1ZhTabXkIAX_BfT2s&_nc_oc=AQmXKJ0pHAwXd9WR5v9tJPCCb0CRhzsCwwZnCXR6SI9lgjyatkFquxm5QoRjh8ieB2o&_nc_ht=scontent.fcor3-1.fna&oh=00_AT-yVQl5iCh1zln-O7zC6bJWD8Qauwj6q3x1lOgJeXWDcA&oe=6361D58C"
+            <img src={Logo}
               style={{ height: "320px", width: "320px", borderRadius: "30px", marginLeft: "0px" }} />
           </Right>
         </Wrapper2>

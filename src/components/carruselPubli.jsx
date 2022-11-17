@@ -1,7 +1,5 @@
 import AliceCarousel from "react-alice-carousel";
 import imagen2 from '../assets/soberania.jpeg'
-import imagen3 from '../assets/banner-promocions.png'
-import imagen4 from '../assets/banner-ubicacion.png'
 
 
 const CarruselPublicidad = () => {
@@ -13,11 +11,11 @@ const CarruselPublicidad = () => {
         },
         {
             id: 2,
-            img: `${imagen3}`
+            img: `${imagen2}`
         },
         {
             id: 3,
-            img: `${imagen4}`
+            img: `${imagen2}`
         }
     ]
 

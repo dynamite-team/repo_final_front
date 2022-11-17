@@ -98,7 +98,7 @@ const Catalogo = () => {
   //estado de puntos de ubicacion
   const [puntos, setPuntos] = useState([]);
   //estado de los valores del select de ubicaciones
-  const [valorSelect, setValorSelect] = useState(null)
+  const [valorSelect, setValorSelect] = useState('')
 
 
   //Llamada a la api 
@@ -117,32 +117,20 @@ const Catalogo = () => {
       })
   }
 
+  //Hace las consultas a las apis cuando se renderiza 
+  useEffect(() => {
+    showData();
+  }, [])
   //Cada vez que el select de ubicacion se modifique se va a llamar a la api con el punto elegido
   useEffect(() => {
     fetch(`https://node-saf-api.onrender.com/api/v1/productos?desde=0&limite=100&punto=${valorSelect}`)
       .then(response => response.json())
       .then(data => {
         setProductos(data.productos);
-        console.log("productos de esta ruta", productos)
         setLoading(false)
       })
   }, [valorSelect])
 
-
-  //Hace las consultas a las apis cuando se renderiza 
-  useEffect(() => {
-    showData();
-  }, [])
-  //cada vez que se realiza una modificacion de eleccion de categoria
-  //se filtran los productos
-  useEffect(() => {
-    setFiltrado(productos.filter((element) => element.categoria.nombre === categoria))
-  }, [categoria])
-
-  //Función que guarda el valor de lo que se escribe en el input
-  const searcher = (e) => {
-    setSearch(e.target.value)
-  }
   //Se filtran los productos cada vez que se modifica el estado del buscador
   useEffect(() => {
     if (!search) {
@@ -152,6 +140,18 @@ const Catalogo = () => {
         producto.nombre.includes(search.toUpperCase())))
     }
   }, [search])
+
+  //cada vez que se realiza una modificacion de eleccion de categoria
+  //se filtran los productos
+  useEffect(() => {
+    setFiltrado(productos.filter((element) => element.categoria.nombre === categoria))
+  }, [categoria])
+
+  //Función que guarda el valor de lo que se escribe en el input
+  const searcher = (e) => {
+    setSearch(e.target.value)
+    console.log(search)
+  }
 
   //Items de carrusel de categorias
   const items = dataCategorias.map((item) => {
@@ -206,7 +206,7 @@ const Catalogo = () => {
         </Container>
 
 
-        <ModalUbi 
+        <ModalUbi
           puntos={puntos}
           setValorSelect={setValorSelect}
         />
